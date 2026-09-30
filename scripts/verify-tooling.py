@@ -33,17 +33,6 @@ for extension_id, version in expected_extensions.items():
 extensions = load_yaml(".specify/extensions.yml")
 assert set(extensions["installed"]) == set(expected_extensions)
 
-config = load_yaml(".specify/integrations/atlassian/config.yml")
-assert config["site"] == "https://barthisagent.atlassian.net"
-assert config["jira_project"] == "SCRUM"
-assert config["confluence_space_id"] == "65822"
-assert config["email_env"] == "ATLASSIAN_EMAIL"
-assert config["token_env"] == "ATLASSIAN_API_TOKEN"
-assert set(config["enabled_integrations"]) == {
-    "spec-kit-atlassian",
-    "agentstandards-atlassian",
-}
-
 required_skills = {
     "speckit-specify",
     "speckit-plan",
@@ -55,15 +44,15 @@ required_skills = {
 installed_skills = {path.parent.name for path in (ROOT / ".agents/skills").glob("*/SKILL.md")}
 assert required_skills <= installed_skills
 
-for workflow in (
-    "atlassian-sync.yml",
-    "delivery-evidence.yml",
-    "delivery-acceptance.yml",
-    "delivery-review-signal.yml",
+for forbidden_path in (
+    ".specify/integrations/atlassian/config.yml",
+    ".delivery-policy.yml",
+    ".github/workflows/atlassian-sync.yml",
+    ".github/workflows/delivery-evidence.yml",
+    ".github/workflows/delivery-acceptance.yml",
+    ".github/workflows/delivery-review-signal.yml",
 ):
-    document = load_yaml(f".github/workflows/{workflow}")
-    assert document["name"]
-    assert "jobs" in document
+    assert not (ROOT / forbidden_path).exists(), forbidden_path
 
-assert not sources["trust_candidates"]["speckit-delivery-public-runner"]["enabled"]
-print("Tooling manifests, pins, skills, and workflows are consistent.")
+assert "trust_candidates" not in sources
+print("Pinned guest source installations and the source-only boundary are consistent.")

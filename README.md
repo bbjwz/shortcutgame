@@ -14,6 +14,19 @@ Spec Kit is intentionally pinned to 1.0.12 because the reviewed delivery
 extension currently requires that exact version. Source revisions and trust
 status are recorded in [docs/tooling.md](docs/tooling.md).
 
+## Guest source-only boundary
+
+`spec-kit-atlassian`, `agentstandards-atlassian`, and `speckit-delivery` are
+public repositories used here only as pinned, vendored source code. This
+project does not request or rely on upstream write access, repository
+administration, an Atlassian tenant binding, API credentials, GitHub
+repository variables or secrets, privileged workflows, a trusted runner, or
+live Jira/Confluence writes.
+
+Their source is available under `.specify/extensions/`, with local Codex skills
+under `.agents/skills/`. Installing the source does not activate its networked
+integrations.
+
 ## Start a feature
 
 Run these Codex skills from the repository root:
@@ -38,17 +51,6 @@ $speckit-delivery-verify
 The Agentstandards task gate and Delivery implementation gate are installed as
 wrappers, so bypassing their explicit commands does not turn a blocked result
 into approval.
-
-## Atlassian
-
-The non-secret tenant configuration targets:
-
-- Jira site: `https://barthisagent.atlassian.net`
-- Jira project: `SCRUM`
-- Confluence space: `The Agent of Bart` (`65822`)
-
-No API token is stored in this repository. See [docs/tooling.md](docs/tooling.md)
-for the remaining secret and sandbox-validation steps.
 
 ## Validate the setup
 

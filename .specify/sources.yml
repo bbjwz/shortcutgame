@@ -25,9 +25,3 @@ components:
     version: 0.1.0
     ref: 55f59b4a986b1faaf9a1b6ab482868087bb1a9be
     status: unmerged-candidate
-trust_candidates:
-  speckit-delivery-public-runner:
-    ref: b81f6aaddbcff12e1c419285059c91038b028e12
-    pull_request: https://github.com/bbjwz/speckit-delivery/pull/4
-    enabled: false
-    reason: Requires human review before DELIVERY_RUNNER_SHA may be set.
