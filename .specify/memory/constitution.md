@@ -52,15 +52,19 @@ reversible.
 
 Secrets, provider keys, Atlassian tokens, browser state, raw private evidence, and generated
 presentations MUST NOT be committed. Public dependencies MUST be pinned to reviewed source
-revisions and consumed with the minimum access required. `spec-kit-atlassian`,
-`agentstandards-atlassian`, and `speckit-delivery` are guest/source-only dependencies: tenant
-bindings, repository secrets or variables, privileged workflows, trusted runners, live remote
-writes, and upstream publishing MUST remain disabled unless a human explicitly approves a scoped
-change to that boundary. Project-defined commands MUST run only in an environment appropriate for
-their trust level because delivery execution is not a sandbox.
+revisions and consumed with the minimum upstream access required. `spec-kit-atlassian`,
+`agentstandards-atlassian`, and `speckit-delivery` are guest/source-only upstream dependencies: the
+project MUST NOT require collaborator access, repository administration, upstream branches,
+releases, or pull requests to use them. Their pinned source MAY be installed, configured, and run
+with the full capabilities required by this project against project-owned GitHub, Jira, Confluence,
+and delivery resources. Credentials MUST remain in approved secret stores. Live writes and
+privileged workflows MUST use reviewed source pins, pass the package's preview and diagnostic gates,
+and be explicitly initiated or enabled by an authorized human. Project-defined commands MUST run
+only in an environment appropriate for their trust level because delivery execution is not a
+sandbox.
 
-Rationale: public source availability does not authorize credentials, external writes, elevated
-repository privileges, or disclosure of project evidence.
+Rationale: public source availability grants no upstream privilege, while guest status must not
+prevent explicitly authorized use of that source against resources owned by this project.
 
 ## Project Constraints and Quality Standards
 
@@ -68,6 +72,10 @@ repository privileges, or disclosure of project evidence.
   remain compatible with the pinned versions recorded in `.specify/sources.yml`.
 - Agentstandards is the sole architecture-readiness authority. Companion integrations MUST NOT
   fabricate, weaken, or replace its verifier result.
+- Spec Kit Atlassian and Agentstandards Atlassian MAY publish to the configured project-owned tenant
+  only after offline preview, authenticated preview, doctor, and a reviewed sandbox round trip.
+- Spec Kit Delivery MAY execute demonstrations and CI verification only with reviewed source and
+  runner pins that preserve private evidence and publish only explicitly allowlisted artifacts.
 - Every requirement and task included in an approved delivery baseline MUST map to one or more
   executable or inspectable assertions, including a regression scenario.
 - Generated evidence and presentations MUST remain outside Git unless a reviewed policy explicitly
