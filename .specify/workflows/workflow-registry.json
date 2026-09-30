@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "workflows": {
+    "speckit": {
+      "name": "Full SDD Cycle",
+      "version": "1.0.1",
+      "description": "Runs specify \u2192 plan \u2192 tasks \u2192 implement with review gates",
+      "source": "bundled",
+      "installed_at": "2026-09-30T19:23:34.974745+00:00",
+      "updated_at": "2026-09-30T19:23:34.974752+00:00"
+    },
+    "agentstandards-architecture": {
+      "name": "Spec Kit Multi-Vendor Architecture Council",
+      "version": "0.1.1",
+      "description": "Runs specification, clarification, planning, a human-gated architecture council, validation, and task generation with Codex orchestration.",
+      "source": "catalog",
+      "catalog_name": "agentstandards",
+      "url": "https://raw.githubusercontent.com/bbjwz/agentstandards/v0.1.1/workflows/agentstandards-architecture/workflow.yml",
+      "installed_at": "2026-09-30T19:23:51.101780+00:00",
+      "updated_at": "2026-09-30T19:23:51.101790+00:00"
+    },
+    "delivery": {
+      "name": "Demonstrate, verify, and present",
+      "version": "0.1.0",
+      "description": "Take existing Spec Kit tasks through an approved baseline and evidence-based acceptance.",
+      "source": "http://127.0.0.1:8876/speckit-delivery-pr1/dist/spec-kit/delivery-workflow-0.1.0.zip",
+      "installed_at": "2026-09-30T19:30:45.836500+00:00",
+      "updated_at": "2026-09-30T19:30:45.836641+00:00"
+    }
+  }
+}

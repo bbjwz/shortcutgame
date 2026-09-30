@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "updated_at": "2026-09-30T19:23:51Z",
+  "bundles": [
+    {
+      "bundle_id": "agentstandards",
+      "version": "0.1.1",
+      "installed_at": "2026-09-30T19:23:51Z",
+      "contributed_components": [
+        {
+          "kind": "extensions",
+          "id": "agentstandards",
+          "version": "0.1.1"
+        },
+        {
+          "kind": "presets",
+          "id": "agentstandards-gate",
+          "version": "0.1.1",
+          "priority": 1,
+          "strategy": "wrap"
+        },
+        {
+          "kind": "workflows",
+          "id": "agentstandards-architecture",
+          "version": "0.1.1"
+        }
+      ]
+    }
+  ]
+}

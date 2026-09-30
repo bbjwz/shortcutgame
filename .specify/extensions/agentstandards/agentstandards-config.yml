@@ -1,0 +1,71 @@
+schema_version: "1.0"
+configured: false
+
+participants:
+  - id: "codex"
+    required: true
+    enabled: true
+    transport: "codex-cli"
+    underlying_vendor: "openai"
+    model: ""
+    executable: "codex"
+    api_key_env: null
+    base_url: null
+    max_output_tokens: 12000
+    pricing:
+      input_per_million_usd: 0
+      output_per_million_usd: 0
+
+  - id: "anthropic"
+    required: true
+    enabled: true
+    transport: "anthropic"
+    underlying_vendor: "anthropic"
+    model: ""
+    executable: null
+    api_key_env: "ANTHROPIC_API_KEY"
+    base_url: "https://api.anthropic.com"
+    max_output_tokens: 12000
+    pricing:
+      input_per_million_usd: 0
+      output_per_million_usd: 0
+
+  # Optional participants execute every persona when enabled. Pin an explicit
+  # model and underlying vendor; auto-routing models cannot count as diverse.
+  # - id: "google-via-abacus"
+  #   required: false
+  #   enabled: true
+  #   transport: "openai-compatible"
+  #   underlying_vendor: "google"
+  #   model: "gemini-model-id"
+  #   executable: null
+  #   api_key_env: "ABACUS_API_KEY"
+  #   base_url: "https://routellm.abacus.ai/v1"
+  #   max_output_tokens: 12000
+  #   pricing:
+  #     input_per_million_usd: 0
+  #     output_per_million_usd: 0
+
+limits:
+  max_concurrency: 4
+  request_timeout_seconds: 180
+  max_retries: 2
+  max_calls_per_run: 500
+  max_total_input_tokens: 2000000
+  max_total_output_tokens: 500000
+  max_cost_usd: 100
+
+transcripts:
+  # Required for offline provenance validation. These files can contain confidential
+  # architecture information even after secret scanning; review them before Git commit or sharing.
+  commit_visible_io: true
+  include_response_envelope: false
+  secret_scan: true
+  redaction_policy: "abort"
+
+# Mandatory and intentionally non-configurable: every inference attempt uses a
+# newly constructed adapter and a fresh provider conversation/request.
+isolation:
+  context_mode: "fresh-context-per-invocation"
+  reuse_provider_sessions: false
+  reuse_adapter_instances: false

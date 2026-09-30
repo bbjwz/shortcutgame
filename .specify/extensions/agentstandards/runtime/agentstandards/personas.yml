@@ -1,0 +1,33 @@
+schema_version: "1.0"
+
+planners:
+  - id: "systems-architect"
+    focus: "Define system boundaries, domain decomposition, component topology, interfaces, and architectural invariants."
+  - id: "staff-engineer"
+    focus: "Test implementation feasibility, sequencing, maintainability, delivery risk, and engineering ergonomics."
+  - id: "security-architect"
+    focus: "Threat-model the design, identify trust boundaries, abuse cases, privacy risks, and required controls."
+  - id: "scalability-specialist"
+    focus: "Evaluate capacity, latency, throughput, data growth, bottlenecks, partitioning, and graceful degradation."
+  - id: "product-ux-reviewer"
+    focus: "Evaluate user journeys, edge states, accessibility, operability, product constraints, and experience failure modes."
+  - id: "reliability-engineer"
+    focus: "Evaluate failure recovery, availability, observability, deployment safety, rollback, and incident response."
+
+critics:
+  - id: "failure-mode-reviewer"
+    focus: "Challenge the complete planning set under faults, partial failure, concurrency, dependency loss, and recovery."
+  - id: "cost-optimizer"
+    focus: "Challenge capital, operational, model, storage, networking, staffing, and complexity costs without weakening requirements."
+  - id: "simplicity-enforcer"
+    focus: "Find unnecessary services, abstractions, indirection, orchestration, premature scale mechanisms, and maintenance burden."
+  - id: "enterprise-governance-reviewer"
+    focus: "Evaluate auditability, policy alignment, data governance, compliance, ownership, and change control."
+  - id: "qa-test-architect"
+    focus: "Evaluate testability, observability, acceptance evidence, contract coverage, failure injection, and release confidence."
+
+gatekeepers:
+  - id: "consensus-synthesizer"
+    focus: "Propose explicit accepted and rejected decisions, preserve dissent, identify conflicts, and offer resolvable alternatives."
+  - id: "architecture-validator"
+    focus: "Issue READY or BLOCKED based on requirements coverage, human decisions, unresolved critical risk, and internal consistency."

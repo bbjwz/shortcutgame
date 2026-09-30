@@ -1,0 +1,71 @@
+installed:
+- agentstandards
+- agentstandards-atlassian
+- atlassian
+- delivery
+settings:
+  auto_execute_hooks: true
+hooks:
+  after_plan:
+  - extension: agentstandards
+    command: speckit.agentstandards.architect
+    enabled: true
+    optional: true
+    priority: 20
+    prompt: Run the Agentstandards multi-vendor architecture council before creating
+      tasks?
+    description: Launch the bounded architecture council after Spec Kit planning
+    condition: null
+  before_tasks:
+  - extension: agentstandards
+    command: speckit.agentstandards.gate
+    enabled: true
+    optional: false
+    priority: 1
+    prompt: Execute speckit.agentstandards.gate?
+    description: Refuse task generation until the active feature has a READY architecture
+      gate
+    condition: null
+  after_tasks:
+  - extension: delivery
+    command: speckit.delivery.plan
+    enabled: true
+    optional: false
+    priority: 30
+    prompt: Execute speckit.delivery.plan?
+    description: ''
+    condition: null
+  before_implement:
+  - extension: delivery
+    command: speckit.delivery.gate
+    enabled: true
+    optional: false
+    priority: 1
+    prompt: Execute speckit.delivery.gate?
+    description: Invoke gate with --phase baseline before implementation
+    condition: null
+  after_implement:
+  - extension: delivery
+    command: speckit.delivery.demo
+    enabled: true
+    optional: false
+    priority: 20
+    prompt: Execute speckit.delivery.demo?
+    description: ''
+    condition: null
+  - extension: delivery
+    command: speckit.delivery.present
+    enabled: true
+    optional: false
+    priority: 30
+    prompt: Execute speckit.delivery.present?
+    description: ''
+    condition: null
+  - extension: delivery
+    command: speckit.delivery.verify
+    enabled: true
+    optional: false
+    priority: 40
+    prompt: Execute speckit.delivery.verify?
+    description: ''
+    condition: null

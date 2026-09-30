@@ -1,0 +1,60 @@
+schema_version: "1.0"
+
+workflow:
+  id: "agentstandards-architecture"
+  name: "Spec Kit Multi-Vendor Architecture Council"
+  version: "0.1.1"
+  author: "bbjwz"
+  description: "Runs specification, clarification, planning, a human-gated architecture council, validation, and task generation with Codex orchestration."
+
+requires:
+  speckit_version: ">=1.0.8,<2.0.0"
+  integrations:
+    any: ["codex"]
+
+inputs:
+  spec:
+    type: string
+    required: true
+    prompt: "Describe the feature to specify and architect"
+
+steps:
+  - id: specify
+    command: speckit.specify
+    integration: codex
+    input:
+      args: "{{ inputs.spec }}"
+
+  - id: clarify
+    command: speckit.clarify
+    integration: codex
+
+  - id: plan
+    command: speckit.plan
+    integration: codex
+    input:
+      args: "{{ inputs.spec }}"
+
+  - id: architecture-council
+    command: speckit.agentstandards.architect
+    integration: codex
+
+  - id: human-architecture-decision
+    type: gate
+    message: "Review the versioned Agentstandards decision manifest, select outcomes with rationale, and mark it approved before continuing."
+    options: [approve, reject]
+    on_reject: abort
+
+  - id: architecture-validation
+    command: speckit.agentstandards.resume
+    integration: codex
+
+  - id: architecture-ready
+    command: speckit.agentstandards.gate
+    integration: codex
+
+  - id: tasks
+    command: speckit.tasks
+    integration: codex
+    input:
+      args: "{{ inputs.spec }}"

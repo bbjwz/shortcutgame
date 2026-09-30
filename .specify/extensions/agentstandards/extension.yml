@@ -1,0 +1,80 @@
+schema_version: "1.0"
+
+extension:
+  id: "agentstandards"
+  name: "Agentstandards Architecture Council"
+  version: "0.1.1"
+  description: "Run a bounded, multi-vendor architecture council between Spec Kit planning and task generation."
+  category: "process"
+  effect: "read-write"
+  author: "bbjwz"
+  repository: "https://github.com/bbjwz/agentstandards"
+  license: "MIT"
+  homepage: "https://github.com/bbjwz/agentstandards"
+
+requires:
+  speckit_version: ">=1.0.8,<2.0.0"
+  tools:
+    - name: "uv"
+      required: true
+    - name: "codex"
+      required: true
+  commands:
+    - "speckit.plan"
+    - "speckit.tasks"
+
+provides:
+  commands:
+    - name: "speckit.agentstandards.init"
+      file: "commands/speckit.agentstandards.init.md"
+      description: "Configure the Codex, Anthropic, and optional architecture-council participants"
+    - name: "speckit.agentstandards.architect"
+      file: "commands/speckit.agentstandards.architect.md"
+      description: "Run all multi-vendor architecture personas through synthesis and pause for human decisions"
+    - name: "speckit.agentstandards.resume"
+      file: "commands/speckit.agentstandards.resume.md"
+      description: "Compile human decisions, run multi-vendor validation, and produce the architecture gate"
+    - name: "speckit.agentstandards.status"
+      file: "commands/speckit.agentstandards.status.md"
+      description: "Show architecture-council participants, progress, usage, failures, and gate state"
+    - name: "speckit.agentstandards.gate"
+      file: "commands/speckit.agentstandards.gate.md"
+      description: "Internal hard gate that blocks task generation until architecture is READY"
+  scripts:
+    - name: "agentstandards-runner-python"
+      file: "scripts/python/agentstandards.py"
+      description: "Deterministic Python runner for the multi-vendor architecture council"
+      runtimes: ["python"]
+    - name: "agentstandards-runner-shell"
+      file: "scripts/bash/agentstandards.sh"
+      description: "POSIX uv launcher for the architecture council"
+      runtimes: ["bash"]
+    - name: "agentstandards-runner-powershell"
+      file: "scripts/powershell/agentstandards.ps1"
+      description: "PowerShell uv launcher for the architecture council"
+      runtimes: ["powershell"]
+  config:
+    - name: "agentstandards-config.yml"
+      template: "config-template.yml"
+      description: "Project-scoped participants, limits, and transcript policy"
+      required: true
+
+hooks:
+  after_plan:
+    command: "speckit.agentstandards.architect"
+    priority: 20
+    optional: true
+    prompt: "Run the Agentstandards multi-vendor architecture council before creating tasks?"
+    description: "Launch the bounded architecture council after Spec Kit planning"
+  before_tasks:
+    command: "speckit.agentstandards.gate"
+    priority: 1
+    optional: false
+    description: "Refuse task generation until the active feature has a READY architecture gate"
+
+tags:
+  - "architecture"
+  - "multi-agent"
+  - "multi-vendor"
+  - "governance"
+  - "codex"

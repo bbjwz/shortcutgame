@@ -1,0 +1,27 @@
+schema_version: "1.0"
+components:
+  spec-kit:
+    repository: https://github.com/github/spec-kit
+    version: 1.0.12
+    ref: v1.0.12
+    status: released
+  agentstandards:
+    repository: https://github.com/bbjwz/agentstandards
+    version: 0.1.1
+    ref: da5a2f029bd318ac96ad5682430ca6fbf4a01640
+    status: released
+  spec-kit-atlassian:
+    repository: https://github.com/bbjwz/spec-kit-atlassian
+    version: 0.1.0
+    ref: f3931abec00c4dfd0ff544dd8f0c7b5619d87b0e
+    status: development-preview
+  agentstandards-atlassian:
+    repository: https://github.com/bbjwz/agentstandards-atlassian
+    version: 0.1.0
+    ref: 6ee448169db0ece00cb4920b4e811a515730d55e
+    status: development-preview
+  speckit-delivery:
+    repository: https://github.com/bbjwz/speckit-delivery
+    version: 0.1.0
+    ref: 55f59b4a986b1faaf9a1b6ab482868087bb1a9be
+    status: unmerged-candidate
