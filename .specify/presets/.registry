@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "presets": {
+    "agentstandards-gate": {
+      "version": "0.1.1",
+      "source": {
+        "kind": "catalog",
+        "catalog": "agentstandards"
+      },
+      "manifest_hash": "sha256:b5b488c5b98320754bc9a11c970a7ac78aea4b817ae025f6394faec90e3fc00d",
+      "enabled": true,
+      "priority": 1,
+      "registered_commands": {
+        "codex": [
+          "speckit.tasks"
+        ]
+      },
+      "registered_skills": {
+        "codex": [
+          "speckit-tasks"
+        ]
+      },
+      "installed_at": "2026-09-30T19:23:50.382706+00:00"
+    },
+    "delivery-gate": {
+      "version": "0.1.0",
+      "source": "local",
+      "manifest_hash": "sha256:a93baf711672465ffcc71fd1f15763ea38fadd0eea2b224d90daa5335622fe07",
+      "enabled": true,
+      "priority": 5,
+      "registered_commands": {
+        "codex": [
+          "speckit.implement"
+        ]
+      },
+      "registered_skills": {
+        "codex": [
+          "speckit-implement"
+        ]
+      },
+      "installed_at": "2026-09-30T19:30:45.548914+00:00"
+    }
+  }
+}

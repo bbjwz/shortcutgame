@@ -1,0 +1,19 @@
+.DS_Store
+
+# Machine-local Spec Kit caches and locks.
+.specify/.workflow-install.lock
+.specify/extensions/.backup/
+.specify/extensions/.cache/
+.specify/presets/.cache/
+.specify/workflows/.cache/
+
+# Local Python and Node installations inside vendored extensions.
+.specify/extensions/**/.venv/
+.specify/extensions/**/node_modules/
+**/__pycache__/
+*.py[cod]
+
+# Local delivery evidence can contain screenshots, traces, and application data.
+specs/*/delivery/runs/
+specs/*/delivery/presentations/
+specs/*/delivery/verification.json

@@ -1,0 +1,54 @@
+schema_version: '1.0'
+extension:
+  id: agentstandards-atlassian
+  name: agentstandards-atlassian
+  version: 0.1.0
+  description: Publish council evidence and reconcile human decisions in Jira and
+    Confluence Cloud
+  category: integration
+  effect: read-write
+  author: bbjwz
+  repository: https://github.com/bbjwz/agentstandards-atlassian
+  license: MIT
+requires:
+  speckit_version: '>=1.0.8,<2.0.0'
+  tools:
+  - name: uv
+    required: true
+  - name: gh
+    required: true
+provides:
+  commands:
+  - name: speckit.agentstandards-atlassian.init
+    file: commands/init.md
+    description: 'init: Publish council evidence and reconcile human decisions in
+      Jira and Confluence Cloud'
+  - name: speckit.agentstandards-atlassian.doctor
+    file: commands/doctor.md
+    description: 'doctor: Publish council evidence and reconcile human decisions in
+      Jira and Confluence Cloud'
+  - name: speckit.agentstandards-atlassian.preview
+    file: commands/preview.md
+    description: 'preview: Publish council evidence and reconcile human decisions
+      in Jira and Confluence Cloud'
+  - name: speckit.agentstandards-atlassian.sync
+    file: commands/sync.md
+    description: 'sync: Publish council evidence and reconcile human decisions in
+      Jira and Confluence Cloud'
+  - name: speckit.agentstandards-atlassian.status
+    file: commands/status.md
+    description: 'status: Publish council evidence and reconcile human decisions in
+      Jira and Confluence Cloud'
+  - name: speckit.agentstandards-atlassian.adopt
+    file: commands/adopt.md
+    description: 'adopt: Publish council evidence and reconcile human decisions in
+      Jira and Confluence Cloud'
+  - name: speckit.agentstandards-atlassian.reconcile-decisions
+    file: commands/reconcile-decisions.md
+    description: 'reconcile-decisions: Publish council evidence and reconcile human
+      decisions in Jira and Confluence Cloud'
+tags:
+- jira
+- confluence
+- integration
+- visibility

@@ -1,0 +1,21 @@
+---
+name: speckit-agentstandards-resume
+description: Resume after human decisions, compile the master plan, and validate the
+  architecture.
+compatibility: Requires spec-kit project structure with .specify/ directory
+metadata:
+  author: bbjwz
+  source: extension:agentstandards
+---
+
+# Agentstandards Resume Skill
+
+# Resume the architecture council
+
+Run `python3 .specify/extensions/agentstandards/scripts/python/agentstandards.py resume --json` once from the repository root.
+
+If the gate is `READY`, report the master-plan and gate-report paths and state that task generation
+is now permitted. If the gate is `BLOCKED`, identify the blocking required validators from the gate
+report. The human must either remediate the architecture and start a new run, or set the decision
+manifest to `exception` and record the blocking validator artifact IDs, rationale, approver, and
+timestamp before resuming again. Never invent an exception or approval.

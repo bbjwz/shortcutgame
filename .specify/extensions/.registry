@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "extensions": {
+    "agentstandards": {
+      "version": "0.1.1",
+      "source": {
+        "kind": "catalog",
+        "catalog": "agentstandards"
+      },
+      "manifest_hash": "sha256:73e9c619dd654f33fc8e9abc9ab2902633b3e6312e7ddd0897153844e15e2a86",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "codex": [
+          "speckit.agentstandards.init",
+          "speckit.agentstandards.architect",
+          "speckit.agentstandards.resume",
+          "speckit.agentstandards.status",
+          "speckit.agentstandards.gate"
+        ]
+      },
+      "registered_skills": [
+        "speckit-agentstandards-init",
+        "speckit-agentstandards-architect",
+        "speckit-agentstandards-resume",
+        "speckit-agentstandards-status",
+        "speckit-agentstandards-gate"
+      ],
+      "installed_at": "2026-09-30T19:23:49.719414+00:00"
+    },
+    "atlassian": {
+      "version": "0.1.0",
+      "source": "local",
+      "manifest_hash": "sha256:9e63be7e1f1ea50aae82e0cd565288ad88524fdb73a8ec3bf39f25a549614cb4",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "codex": [
+          "speckit.atlassian.init",
+          "speckit.atlassian.doctor",
+          "speckit.atlassian.preview",
+          "speckit.atlassian.sync",
+          "speckit.atlassian.status",
+          "speckit.atlassian.adopt",
+          "speckit.atlassian.reconcile"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-09-30T19:30:44.732694+00:00"
+    },
+    "agentstandards-atlassian": {
+      "version": "0.1.0",
+      "source": "local",
+      "manifest_hash": "sha256:830f5763a1f50b51bffa5f22fdba184ad836b0f2323eedb029aabb0b7d8d15dd",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "codex": [
+          "speckit.agentstandards-atlassian.init",
+          "speckit.agentstandards-atlassian.doctor",
+          "speckit.agentstandards-atlassian.preview",
+          "speckit.agentstandards-atlassian.sync",
+          "speckit.agentstandards-atlassian.status",
+          "speckit.agentstandards-atlassian.adopt",
+          "speckit.agentstandards-atlassian.reconcile-decisions"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-09-30T19:30:45.014260+00:00"
+    },
+    "delivery": {
+      "version": "0.1.0",
+      "source": "local",
+      "manifest_hash": "sha256:81cd9452ed3bdac8bc626c507a74099d527f3a5824b1ea1a91f082d07fd5de24",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "codex": [
+          "speckit.delivery.plan",
+          "speckit.delivery.demo",
+          "speckit.delivery.verify",
+          "speckit.delivery.present",
+          "speckit.delivery.status",
+          "speckit.delivery.gate"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-09-30T19:30:45.299949+00:00"
+    }
+  }
+}

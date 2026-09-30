@@ -1,0 +1,6 @@
+schema_version: '1.0'
+catalogs:
+- id: agentstandards
+  url: https://raw.githubusercontent.com/bbjwz/agentstandards/v0.1.1/catalogs/bundles.json
+  priority: 10
+  install_policy: install-allowed

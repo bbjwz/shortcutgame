@@ -1,0 +1,6 @@
+catalogs:
+- name: agentstandards
+  url: https://raw.githubusercontent.com/bbjwz/agentstandards/v0.1.1/catalogs/presets.json
+  priority: 10
+  install_allowed: true
+  description: ''

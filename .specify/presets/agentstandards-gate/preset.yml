@@ -1,0 +1,26 @@
+schema_version: "1.0"
+
+preset:
+  id: "agentstandards-gate"
+  name: "Agentstandards Task Gate"
+  version: "0.1.1"
+  description: "Hard-block Spec Kit task generation until the multi-vendor architecture gate is READY."
+  author: "bbjwz"
+  repository: "https://github.com/bbjwz/agentstandards"
+  license: "MIT"
+
+requires:
+  speckit_version: ">=1.0.8,<2.0.0"
+  extensions:
+    - "agentstandards"
+
+provides:
+  templates:
+    - type: "command"
+      name: "speckit.tasks"
+      file: "commands/speckit.tasks.md"
+      description: "Run the Agentstandards architecture gate before the core tasks command"
+      replaces: "speckit.tasks"
+      strategy: "wrap"
+
+tags: ["architecture", "gate", "multi-vendor", "tasks"]
