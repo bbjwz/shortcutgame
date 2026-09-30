@@ -1,50 +1,113 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Shortcut Game Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Specification Before Implementation
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Every product behavior change MUST begin with a Spec Kit feature specification containing
+testable user scenarios, requirements, acceptance criteria, and explicit exclusions. The
+specification MUST be clarified before planning whenever material ambiguity remains. Implementation
+MUST NOT begin from an informal request alone. Documentation-only, repository-maintenance, and
+tooling-repair changes MAY use a focused pull request without a feature specification when they do
+not alter product behavior.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+Rationale: written, testable intent prevents implementation details from silently defining the
+product.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### II. Architecture Readiness Before Tasks
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+Every feature plan MUST undergo the Agentstandards architecture council before implementation
+tasks are generated. Required human decisions MUST be recorded in the decision manifest, and the
+offline verifier MUST report a current `READY` or explicitly approved exception state. A council
+report, provider response, or Jira/Confluence representation alone does not satisfy the gate.
+Provider model calls MUST be explicitly initiated by a human with exact model IDs and bounded
+limits.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Rationale: task generation is meaningful only after architecture conflicts and trade-offs have
+been resolved against the current plan.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### III. Evidence-Based Quality
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Every implementation MUST include verification proportional to its risk, including relevant unit,
+integration, contract, end-to-end, lint, type, and build checks. Acceptance evidence MUST assert
+observable behavior and side effects; a page load, screenshot, process start, HTTP success status,
+or passing check alone MUST NOT be represented as proof of the intended outcome. Failed, deferred,
+or inaccessible checks MUST remain visible and MUST NOT be converted into success claims.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Rationale: delivery claims must be reproducible and supported by evidence that tests the promised
+behavior.
+
+### IV. Human Authority and Git Ownership
+
+Git MUST remain authoritative for specifications, plans, tasks, architecture artifacts, source
+code, and delivery definitions. Agents MUST work through reviewable branches and pull requests and
+MUST NOT approve their own architecture decisions, delivery baselines, or final acceptance.
+External systems MAY display or schedule work only when explicitly activated; they MUST NOT replace
+Git artifacts or the human approval gates.
+
+Rationale: durable version history and independent approval keep automated work inspectable and
+reversible.
+
+### V. Security, Privacy, and Least Privilege
+
+Secrets, provider keys, Atlassian tokens, browser state, raw private evidence, and generated
+presentations MUST NOT be committed. Public dependencies MUST be pinned to reviewed source
+revisions and consumed with the minimum access required. `spec-kit-atlassian`,
+`agentstandards-atlassian`, and `speckit-delivery` are guest/source-only dependencies: tenant
+bindings, repository secrets or variables, privileged workflows, trusted runners, live remote
+writes, and upstream publishing MUST remain disabled unless a human explicitly approves a scoped
+change to that boundary. Project-defined commands MUST run only in an environment appropriate for
+their trust level because delivery execution is not a sandbox.
+
+Rationale: public source availability does not authorize credentials, external writes, elevated
+repository privileges, or disclosure of project evidence.
+
+## Project Constraints and Quality Standards
+
+- GitHub Spec Kit is the authoritative feature workflow. Spec Kit and installed extensions MUST
+  remain compatible with the pinned versions recorded in `.specify/sources.yml`.
+- Agentstandards is the sole architecture-readiness authority. Companion integrations MUST NOT
+  fabricate, weaken, or replace its verifier result.
+- Every requirement and task included in an approved delivery baseline MUST map to one or more
+  executable or inspectable assertions, including a regression scenario.
+- Generated evidence and presentations MUST remain outside Git unless a reviewed policy explicitly
+  classifies a specific artifact as safe and necessary to commit.
+- Dependencies and generated artifacts MUST be reviewed for licensing, secrets, private data, and
+  reproducibility before publication.
+- Complexity, new services, and new privileged integrations MUST be justified in the feature plan;
+  the simplest design satisfying the approved requirements MUST be preferred.
+
+## Development Workflow and Gates
+
+1. Establish or amend this constitution when project-wide governance changes.
+2. Run Spec Kit specification, clarification, and planning for each product behavior change.
+3. Configure and run Agentstandards after planning. Resolve the human decision manifest and obtain
+   a verifier-backed readiness result before generating tasks.
+4. Generate and analyze dependency-ordered tasks only after the architecture gate is satisfied.
+5. Map obligations to delivery demonstrations and obtain human approval of the exact baseline
+   before implementation.
+6. Implement on a `codex/<descriptive-name>` branch, run the relevant verification suite, review
+   the diff for secrets and unrelated changes, and publish a draft pull request.
+7. Demonstrate, verify, and present the exact implementation revision. Final acceptance MUST come
+   from an authorized human and MUST match the reviewed evidence digest and revision.
+
+Any failed mandatory gate stops progression. Bypassing a wrapper, omitting evidence, losing access
+to an external dependency, or changing scope does not convert a blocked state into approval.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes conflicting repository guidance. Amendments MUST be proposed in a
+reviewable pull request that explains the motivation, affected principles, migration impact, and
+required follow-up work. An authorized human MUST approve governance changes.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Constitution versions follow semantic versioning:
+
+- MAJOR for incompatible principle removals, weakened gates, or redefinitions of authority.
+- MINOR for new principles, gates, or materially expanded mandatory guidance.
+- PATCH for clarifications that do not change obligations.
+
+Compliance MUST be reviewed during specification, planning, pull-request review, and final delivery
+acceptance. Exceptions MUST be explicit, narrow, time-bounded where applicable, linked to the
+affected evidence, and approved by an authorized human; silent or inferred exceptions are invalid.
+
+**Version**: 1.0.0 | **Ratified**: 2026-09-30 | **Last Amended**: 2026-09-30
