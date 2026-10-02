@@ -55,16 +55,19 @@ presentations MUST NOT be committed. Public dependencies MUST be pinned to revie
 revisions and consumed with the minimum upstream access required. `spec-kit-atlassian`,
 `agentstandards-atlassian`, and `speckit-delivery` are guest/source-only upstream dependencies: the
 project MUST NOT require collaborator access, repository administration, upstream branches,
-releases, or pull requests to use them. Their pinned source MAY be installed, configured, and run
-with the full capabilities required by this project against project-owned GitHub, Jira, Confluence,
-and delivery resources. Credentials MUST remain in approved secret stores. Live writes and
-privileged workflows MUST use reviewed source pins, pass the package's preview and diagnostic gates,
-and be explicitly initiated or enabled by an authorized human. Project-defined commands MUST run
-only in an environment appropriate for their trust level because delivery execution is not a
-sandbox.
+releases, or pull requests to use them. Their pinned source MAY be installed, inspected, tested,
+and run locally within this repository's offline workflow. The project MUST NOT configure an
+Atlassian tenant, Atlassian credentials, repository secrets or variables, privileged CI workflows,
+trusted runners, live remote writes, upstream pull requests, releases, or administrative access
+for these dependencies under the current governance boundary. Changing this boundary requires an
+explicit constitution amendment approved by an authorized human before any activation work begins.
+Provider credentials for the separately governed Agentstandards council MUST remain in approved
+secret stores, and its model calls MUST still be explicitly initiated by a human. Project-defined
+commands MUST run only in an environment appropriate for their trust level because delivery
+execution is not a sandbox.
 
-Rationale: public source availability grants no upstream privilege, while guest status must not
-prevent explicitly authorized use of that source against resources owned by this project.
+Rationale: public source availability permits local use without granting or implying permission to
+activate hosted integrations, privileged infrastructure, or upstream collaboration.
 
 ## Project Constraints and Quality Standards
 
@@ -72,10 +75,11 @@ prevent explicitly authorized use of that source against resources owned by this
   remain compatible with the pinned versions recorded in `.specify/sources.yml`.
 - Agentstandards is the sole architecture-readiness authority. Companion integrations MUST NOT
   fabricate, weaken, or replace its verifier result.
-- Spec Kit Atlassian and Agentstandards Atlassian MAY publish to the configured project-owned tenant
-  only after offline preview, authenticated preview, doctor, and a reviewed sandbox round trip.
-- Spec Kit Delivery MAY execute demonstrations and CI verification only with reviewed source and
-  runner pins that preserve private evidence and publish only explicitly allowlisted artifacts.
+- Spec Kit Atlassian and Agentstandards Atlassian MUST remain unbound to any tenant. Only offline,
+  non-authenticated inspection, validation, and preview commands MAY run.
+- Spec Kit Delivery MAY execute local demonstrations, verification, and presentations from its
+  reviewed source pin. It MUST NOT configure or use a privileged CI workflow, trusted runner, or
+  remote evidence publication under the current governance boundary.
 - Every requirement and task included in an approved delivery baseline MUST map to one or more
   executable or inspectable assertions, including a regression scenario.
 - Generated evidence and presentations MUST remain outside Git unless a reviewed policy explicitly
@@ -118,4 +122,4 @@ Compliance MUST be reviewed during specification, planning, pull-request review,
 acceptance. Exceptions MUST be explicit, narrow, time-bounded where applicable, linked to the
 affected evidence, and approved by an authorized human; silent or inferred exceptions are invalid.
 
-**Version**: 1.0.0 | **Ratified**: 2026-09-30 | **Last Amended**: 2026-09-30
+**Version**: 1.1.0 | **Ratified**: 2026-09-30 | **Last Amended**: 2026-10-02
