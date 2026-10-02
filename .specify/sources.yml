@@ -12,8 +12,8 @@ components:
     status: released
   spec-kit-atlassian:
     repository: https://github.com/bbjwz/spec-kit-atlassian
-    version: 0.1.0
-    ref: f3931abec00c4dfd0ff544dd8f0c7b5619d87b0e
+    version: 0.2.0
+    ref: 57f722965bc55b48798252f410e803922fe83439
     status: development-preview
   agentstandards-atlassian:
     repository: https://github.com/bbjwz/agentstandards-atlassian

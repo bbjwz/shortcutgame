@@ -5,7 +5,6 @@ from pathlib import Path
 
 import yaml
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -20,9 +19,20 @@ init_options = json.loads((ROOT / ".specify/init-options.json").read_text())
 assert init_options["speckit_version"] == "1.0.12"
 assert init_options["integration"] == "codex"
 
+agentstandards = load_yaml(
+    ".specify/extensions/agentstandards/agentstandards-config.yml"
+)
+assert agentstandards["configured"] is True
+participants = {participant["id"]: participant for participant in agentstandards["participants"]}
+assert participants["codex"]["model"] == "gpt-6.1-sol"
+assert participants["anthropic"]["model"] == "claude-opus-5-5"
+assert participants["anthropic"]["underlying_vendor"] == "anthropic"
+assert participants["anthropic"]["api_key_env"] == "ABACUS_API_KEY"
+assert participants["anthropic"]["base_url"] == "https://routellm.abacus.ai"
+
 expected_extensions = {
     "agentstandards": "0.1.1",
-    "atlassian": "0.1.0",
+    "atlassian": "0.2.0",
     "agentstandards-atlassian": "0.1.0",
     "delivery": "0.1.0",
 }
@@ -33,10 +43,22 @@ for extension_id, version in expected_extensions.items():
 extensions = load_yaml(".specify/extensions.yml")
 assert set(extensions["installed"]) == set(expected_extensions)
 
+atlassian_hooks = [
+    hook
+    for hooks in extensions["hooks"].values()
+    for hook in hooks
+    if hook["extension"] == "atlassian"
+]
+assert atlassian_hooks
+assert all(not hook["enabled"] for hook in atlassian_hooks)
+
 required_skills = {
     "speckit-specify",
     "speckit-plan",
     "speckit-agentstandards-architect",
+    "speckit-atlassian-init-project",
+    "speckit-atlassian-constitution-preview",
+    "speckit-atlassian-constitution-status",
     "speckit-atlassian-sync",
     "speckit-agentstandards-atlassian-sync",
     "speckit-delivery-verify",
