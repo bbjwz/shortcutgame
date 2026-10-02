@@ -5,7 +5,8 @@ workflow for Codex:
 
 - GitHub Spec Kit 1.0.12 in Codex skills mode
 - Agentstandards 0.1.1 for architecture council and task gating
-- Spec Kit Atlassian 0.1.0 for Jira and Confluence publication
+- Spec Kit Atlassian 0.2.0 for constitution-first governance plus Jira and
+  Confluence publication
 - Agentstandards Atlassian 0.1.0 for council visibility and human decisions
 - Spec Kit Delivery 0.1.0 for demonstrations, evidence, presentations, and
   acceptance gating
@@ -13,6 +14,10 @@ workflow for Codex:
 Spec Kit is intentionally pinned to 1.0.12 because the reviewed delivery
 extension currently requires that exact version. Source revisions and trust
 status are recorded in [docs/tooling.md](docs/tooling.md).
+
+Agentstandards uses Codex `gpt-6.1-sol` and Anthropic
+`claude-opus-5-5` through Abacus RouteLLM. The repository records only the
+credential environment-variable name; the API key is stored outside Git.
 
 ## Guest source-only boundary
 
@@ -25,7 +30,9 @@ live Jira/Confluence writes.
 
 Their source is available under `.specify/extensions/`, with local Codex skills
 under `.agents/skills/`. Installing the source does not activate its networked
-integrations.
+integrations. Spec Kit Atlassian's constitution commands are installed, while
+its live hooks and governance preset remain inactive until tenant setup is
+separately authorized and validated.
 
 ## Start a feature
 

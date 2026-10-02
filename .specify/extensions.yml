@@ -26,6 +26,14 @@ hooks:
     description: Refuse task generation until the active feature has a READY architecture
       gate
     condition: null
+  - extension: atlassian
+    command: speckit.atlassian.constitution-guard
+    enabled: false
+    optional: false
+    priority: 1
+    prompt: Execute speckit.atlassian.constitution-guard?
+    description: Require live Jira constitution approval before feature work
+    condition: null
   after_tasks:
   - extension: delivery
     command: speckit.delivery.plan
@@ -43,6 +51,14 @@ hooks:
     priority: 1
     prompt: Execute speckit.delivery.gate?
     description: Invoke gate with --phase baseline before implementation
+    condition: null
+  - extension: atlassian
+    command: speckit.atlassian.constitution-guard
+    enabled: false
+    optional: false
+    priority: 1
+    prompt: Execute speckit.atlassian.constitution-guard?
+    description: Require live Jira constitution approval before feature work
     condition: null
   after_implement:
   - extension: delivery
@@ -68,4 +84,41 @@ hooks:
     priority: 40
     prompt: Execute speckit.delivery.verify?
     description: ''
+    condition: null
+  before_specify:
+  - extension: atlassian
+    command: speckit.atlassian.constitution-guard
+    enabled: false
+    optional: false
+    priority: 1
+    prompt: Execute speckit.atlassian.constitution-guard?
+    description: Require live Jira constitution approval before feature work
+    condition: null
+  before_clarify:
+  - extension: atlassian
+    command: speckit.atlassian.constitution-guard
+    enabled: false
+    optional: false
+    priority: 1
+    prompt: Execute speckit.atlassian.constitution-guard?
+    description: Require live Jira constitution approval before feature work
+    condition: null
+  before_plan:
+  - extension: atlassian
+    command: speckit.atlassian.constitution-guard
+    enabled: false
+    optional: false
+    priority: 1
+    prompt: Execute speckit.atlassian.constitution-guard?
+    description: Require live Jira constitution approval before feature work
+    condition: null
+  after_constitution:
+  - extension: atlassian
+    command: speckit.atlassian.constitution-after-edit
+    enabled: false
+    optional: false
+    priority: 20
+    prompt: Execute speckit.atlassian.constitution-after-edit?
+    description: Report publication state; pushed drafts are published by the trusted
+      worker
     condition: null
